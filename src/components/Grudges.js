@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
   const Grudges = ({ people }) => {
     let persons = map(people, (person, index) => {
-	     return <Link to={'/Grudge'} key={index}><li>
+	     return <Link to={`/Grudge/${person.id}`} key={index}><li>
                 {person.name}
               </li></Link>
     })
@@ -16,7 +16,7 @@ import { Link } from 'react-router';
       )
     } else {
       return (
-        <h1>Hello</h1>
+        <h1>You Have No Grudges 🤗</h1>
       )
     }
   }

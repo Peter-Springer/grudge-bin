@@ -8,7 +8,7 @@ const Routes = (props) => (
   <Router {...props}>
     <Route path="/" component={Home}>
       <IndexRoute component={App} />
-      <Route path='/Grudge' component={Grudge} />
+      <Route path='/Grudge/:id' component={Grudge} />
     </Route>
   </Router>
 )

@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   getGrudges() {
-    axios.get('/api/v1/urls')
+    axios.get('/api/v1/grudges')
     .then((response) => {
       this.setState({ people: response.data });
     });
@@ -25,7 +25,7 @@ class App extends Component {
 
   createGrudge(e) {
     e.preventDefault();
-    axios.post('api/v1/urls', {
+    axios.post('api/v1/grudges', {
       name: document.getElementById('name').value,
       grudge: document.getElementById('grudge').value
     })
@@ -36,6 +36,7 @@ class App extends Component {
     console.log('request failed');
     });
     this.getGrudges();
+    document.getElementById('form').reset();
   }
 
   render() {

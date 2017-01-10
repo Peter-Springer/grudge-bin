@@ -2,8 +2,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const md5 = require('md5');
-const crc = require('crc');
+// const md5 = require('md5');
+// const crc = require('crc');
 const cors = require('cors');
 
 app.use(cors());
@@ -11,25 +11,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const server = app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Grudge Bin';
-app.locals.urls = [];
+app.locals.grudges = [];
 
 app.get('/', (request, response) => {
   response.send(app.locals.title);
 });
 
-app.get('/api/v1/urls', (request, response) => {
-  const urls = app.locals.urls;
-  response.send(urls);
+app.get('/api/v1/grudges', (request, response) => {
+  const grudges = app.locals.grudges;
+  response.send(grudges);
 });
 
-// app.get('/api/v1/urls/:shortURL', (request, response) => {
-//   let targetUrl = app.locals.urls.filter((url) => url.shortURL === request.params.shortURL)[0];
-//     if (!targetUrl) { response.send(`redirect failed!`);}
-//     ++targetUrl.count;
-//     response.redirect(targetUrl.url);
-// });
+app.get('/api/v1/grudges/:id', (request, response) => {
+  const { id } = request.params;
+  const person = app.locals.grudges.find(p => p.id == id)
+  if (person) { return response.send({ person }); }
+  else { return response.sendStatus(404);}
+});
 
-app.post('/api/v1/urls', (request, response) => {
+app.post('/api/v1/grudges', (request, response) => {
   console.log(request.body);
   const id = Date.now();
   const name = request.body.name;
@@ -42,7 +42,7 @@ app.post('/api/v1/urls', (request, response) => {
     });
   }
 
-  app.locals.urls.push({ id: id, name: name, grudge: grudge, status: status });
+  app.locals.grudges.push({ id: id, name: name, grudge: grudge, status: status });
 
   response.status(201).json({ id, name, grudge, status });
 });
@@ -50,18 +50,18 @@ app.post('/api/v1/urls', (request, response) => {
 // app.put('/api/v1/urls/:id', (request, response) => {
 //   const { id } = request.params;
 //   const { url } = request.body;
-//   const originalURL = app.locals.urls[id];
+//   const originalURL = app.locals.grudges[id];
 //
 //   if (!originalURL) { return response.status(404); }
 //
-//   app.locals.urls[id] = url;
+//   app.locals.grudges[id] = url;
 //
 //   response.status(201).json({ id, url });
 // });
 //
 // app.delete('/api/v1/urls/:id', (request, response) => {
 //   const { id } = request.params;
-//   const originalURL = app.locals.urls[id];
+//   const originalURL = app.locals.grudges[id];
 //
 //   if (!originalURL) {
 //     return response.status(422).send({
@@ -69,7 +69,7 @@ app.post('/api/v1/urls', (request, response) => {
 //     });
 //   }
 //
-//   delete app.locals.urls[id];
+//   delete app.locals.grudges[id];
 //
 //   response.send('Url deleted');
 // });
