@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const server = app.set('port', process.env.PORT || 3000);
-app.locals.title = 'URL Shortener';
+app.locals.title = 'Grudge Bin';
 app.locals.urls = [];
 
 app.get('/', (request, response) => {
@@ -47,32 +47,32 @@ app.post('/api/v1/urls', (request, response) => {
   response.status(201).json({ id, name, grudge, status });
 });
 
-app.put('/api/v1/urls/:id', (request, response) => {
-  const { id } = request.params;
-  const { url } = request.body;
-  const originalURL = app.locals.urls[id];
-
-  if (!originalURL) { return response.status(404); }
-
-  app.locals.urls[id] = url;
-
-  response.status(201).json({ id, url });
-});
-
-app.delete('/api/v1/urls/:id', (request, response) => {
-  const { id } = request.params;
-  const originalURL = app.locals.urls[id];
-
-  if (!originalURL) {
-    return response.status(422).send({
-      error: 'There is no url with that id'
-    });
-  }
-
-  delete app.locals.urls[id];
-
-  response.send('Url deleted');
-});
+// app.put('/api/v1/urls/:id', (request, response) => {
+//   const { id } = request.params;
+//   const { url } = request.body;
+//   const originalURL = app.locals.urls[id];
+//
+//   if (!originalURL) { return response.status(404); }
+//
+//   app.locals.urls[id] = url;
+//
+//   response.status(201).json({ id, url });
+// });
+//
+// app.delete('/api/v1/urls/:id', (request, response) => {
+//   const { id } = request.params;
+//   const originalURL = app.locals.urls[id];
+//
+//   if (!originalURL) {
+//     return response.status(422).send({
+//       error: 'There is no url with that id'
+//     });
+//   }
+//
+//   delete app.locals.urls[id];
+//
+//   response.send('Url deleted');
+// });
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);

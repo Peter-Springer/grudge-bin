@@ -6,17 +6,21 @@ import '../App.css';
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      people: []
+    };
   }
 
   componentDidMount() {
+    this.getGrudges();
+  }
+
+  getGrudges() {
     axios.get('/api/v1/urls')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  };
+    .then((response) => {
+      this.setState({ people: response.data });
+    });
+  }
 
   createGrudge(e) {
     e.preventDefault();
@@ -30,6 +34,7 @@ class App extends Component {
   .catch( () => {
     console.log('request failed');
     });
+    this.getGrudges();
   }
 
   render() {
