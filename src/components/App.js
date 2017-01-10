@@ -7,11 +7,16 @@ class App extends Component {
   constructor() {
     super();
   }
-  // let grudge = {
-  //   person: 'ben',
-  //   grudge: 'listening to loud music',
-  //   status: 'false',
-  // };
+
+  componentDidMount() {
+    axios.get('/api/v1/urls')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  };
 
   createGrudge(e) {
     e.preventDefault();

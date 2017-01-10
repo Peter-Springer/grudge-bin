@@ -22,18 +22,19 @@ app.get('/api/v1/urls', (request, response) => {
   response.send(urls);
 });
 
-app.get('/api/v1/urls/:shortURL', (request, response) => {
-  let targetUrl = app.locals.urls.filter((url) => url.shortURL === request.params.shortURL)[0];
-    if (!targetUrl) { response.send(`redirect failed!`);}
-    ++targetUrl.count;
-    response.redirect(targetUrl.url);
-});
+// app.get('/api/v1/urls/:shortURL', (request, response) => {
+//   let targetUrl = app.locals.urls.filter((url) => url.shortURL === request.params.shortURL)[0];
+//     if (!targetUrl) { response.send(`redirect failed!`);}
+//     ++targetUrl.count;
+//     response.redirect(targetUrl.url);
+// });
 
 app.post('/api/v1/urls', (request, response) => {
   console.log(request.body);
   const id = Date.now();
   const name = request.body.name;
   const grudge = request.body.grudge;
+  const status = false;
 
   if (!request) {
     return response.status(422).send({
@@ -41,9 +42,9 @@ app.post('/api/v1/urls', (request, response) => {
     });
   }
 
-  app.locals.urls.push({ id: id, name: name, grudge: grudge });
+  app.locals.urls.push({ id: id, name: name, grudge: grudge, status: status });
 
-  response.status(201).json({ id, name, grudge });
+  response.status(201).json({ id, name, grudge, status });
 });
 
 app.put('/api/v1/urls/:id', (request, response) => {
