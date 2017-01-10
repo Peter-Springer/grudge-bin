@@ -1,14 +1,8 @@
 import React from 'react';
 
-const Grudge = ({createGrudge}) => {
+const Grudge = () => {
   return (
-    <div>
-      <form id='form' onSubmit={createGrudge}>
-      <input id='name' name='name' placeholder='name'/>
-      <input id='grudge' name='grudge' placeholder='wrong commited'/>
-      <input type='submit'/>
-      </form>
-    </div>
+    <h1>Grudge Details</h1>
   )
 }
 

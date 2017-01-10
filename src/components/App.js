@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Grudge from './Grudge';
+import GrudgeForm from './GrudgeForm';
+import Grudges from './Grudges';
 import axios from 'axios';
 import '../App.css';
 
@@ -43,7 +44,8 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to Grudge Bin</h2>
         </div>
-        <Grudge createGrudge={(e) => this.createGrudge(e)}/>
+        <GrudgeForm createGrudge={(e) => this.createGrudge(e)}/>
+        <Grudges people={this.state.people}/>
       </div>
     );
   }
