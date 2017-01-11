@@ -4,15 +4,20 @@ import { Link } from 'react-router';
 
   const Grudges = ({ people }) => {
     let persons = map(people, (person, index) => {
-	     return <Link to={`/Grudge/${person.id}`} key={index}><li>
-                {person.name}
-              </li></Link>
+	     return <Link className='link' to={`/Grudge/${person.id}`} key={index}>
+                <li>
+                  {person.name}
+                </li>
+              </Link>
     })
     if (people.length > 0) {
       return (
-        <ul>
-          {persons}
-        </ul>
+        <section className='culprits'>
+          <h1>All Culprits</h1>
+          <ul className='All-Grudges'>
+            {persons}
+          </ul>
+        </section>
       )
     } else {
       return (

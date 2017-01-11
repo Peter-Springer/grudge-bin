@@ -2,13 +2,13 @@ import React from 'react';
 
 const GrudgeForm = ({createGrudge}) => {
   return (
-    <div>
+    <section className='grudgeForm-Container'>
       <form id='form' onSubmit={createGrudge}>
-      <input id='name' name='name' placeholder='name'/>
-      <input id='grudge' name='grudge' placeholder='wrong commited'/>
-      <input type='submit'/>
+      <input id='name' name='name' placeholder='Culprit'/>
+      <input id='grudge' name='grudge' placeholder='Wrong Committed'/>
+      <input id='submit' type='submit'/>
       </form>
-    </div>
+    </section>
   )
 }
 

@@ -1,10 +1,53 @@
-.App {
-  text-align: center;
-}
-
 .App-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
+  font-size: 50px;
+}
+
+.grudgeForm-Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+#name, #grudge {
+  font-size: 30px;
+  margin: 5px;
+}
+
+#submit {
+  font-size: 30px;
+  border: none;
+  background-color: #222;
+  color: white;
+}
+
+.All-Grudges {
+  /*font-size: 30px;*/
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+  /*flex-direction: column;*/
+  /*list-style: none;*/
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #222;
+}
+
+.culprits {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
 }
