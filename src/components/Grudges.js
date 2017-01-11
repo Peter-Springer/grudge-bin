@@ -21,7 +21,9 @@ import { Link } from 'react-router';
       )
     } else {
       return (
-        <h1>You Have No Grudges 🤗</h1>
+        <section className='culprits'>
+          <h1>You Have No Grudges 🤗</h1>
+        </section>
       )
     }
   }
