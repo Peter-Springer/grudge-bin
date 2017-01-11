@@ -27,19 +27,20 @@ export default class Grude extends Component {
   render() {
     if (this.state.person && this.state.person.status === false) {
       return(
-        <div>
-        <h1>Name: {this.state.person.name}</h1>
-        <h1>Grudge: {this.state.person.grudge}</h1>
-        <h1 onClick={()=>this.resolveGrudge()}>Status: 😡</h1>
-        </div>
+        <section className='grudge-details'>
+          <h1>Name: {this.state.person.name}</h1>
+          <h1>Grudge: {this.state.person.grudge}</h1>
+          <h1>Status: 😡</h1>
+          <button className='forgive' onClick={()=>this.resolveGrudge()}>Forgive</button>
+        </section>
       )
     } else {
       return (
-        <div>
-        <h1>Name: {this.state.person.name}</h1>
-        <h1>Grudge: {this.state.person.grudge}</h1>
-        <h1>Status: 😀</h1>
-        </div>
+        <section>
+          <h1>Name: {this.state.person.name}</h1>
+          <h1>Grudge: {this.state.person.grudge}</h1>
+          <h1>Status: 😀</h1>
+        </section>
       )
     }
   }
