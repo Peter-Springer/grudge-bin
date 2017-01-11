@@ -30,7 +30,6 @@ app.get('/api/v1/grudges/:id', (request, response) => {
 });
 
 app.post('/api/v1/grudges', (request, response) => {
-  console.log(request.body);
   const id = Date.now();
   const name = request.body.name;
   const grudge = request.body.grudge;
@@ -47,32 +46,21 @@ app.post('/api/v1/grudges', (request, response) => {
   response.status(201).json({ id, name, grudge, status });
 });
 
-// app.put('/api/v1/urls/:id', (request, response) => {
-//   const { id } = request.params;
-//   const { url } = request.body;
-//   const originalURL = app.locals.grudges[id];
-//
-//   if (!originalURL) { return response.status(404); }
-//
-//   app.locals.grudges[id] = url;
-//
-//   response.status(201).json({ id, url });
-// });
-//
-// app.delete('/api/v1/urls/:id', (request, response) => {
-//   const { id } = request.params;
-//   const originalURL = app.locals.grudges[id];
-//
-//   if (!originalURL) {
-//     return response.status(422).send({
-//       error: 'There is no url with that id'
-//     });
-//   }
-//
-//   delete app.locals.grudges[id];
-//
-//   response.send('Url deleted');
-// });
+app.put('/api/v1/grudges/:id', (request, response) => {
+  console.log(request.params);
+  const { id } = request.params;
+  console.log(id);
+  const { grudge } = request.body;
+  console.log(grudge);
+  const originalGrudge = app.locals.grudges.find(p => p.id == id)
+  console.log(originalGrudge);
+
+  if (!originalGrudge) { return response.status(404); }
+
+  app.locals.grudges.find(p => p.id == id) = grudge;
+  console.log(grudge);
+  response.status(201).json({ id, grudge });
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
